@@ -43,7 +43,6 @@ android {
 }
 
 dependencies {
-    val tflite = "0.1.0-rc1"
     val camerax_version = "1.0.0-beta06"
     val camerax_view_version = "1.0.0-alpha13"
 
@@ -52,8 +51,11 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:${camerax_version}")
     implementation("androidx.camera:camera-view:${camerax_view_version}")
 
-    implementation("org.tensorflow:tensorflow-lite-metadata:${tflite}")
-    implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
+    implementation("org.tensorflow:tensorflow-lite:2.16.1")
+    implementation("org.tensorflow:tensorflow-lite-task-vision:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

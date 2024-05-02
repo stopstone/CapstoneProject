@@ -1,6 +1,5 @@
 package com.stopstone.capstoneproject
 
-
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.ImageFormat
@@ -52,25 +51,17 @@ class YuvToRgbConverter(context: Context) {
         val imageCrop = image.cropRect
         val imagePlanes = image.planes
         imagePlanes.forEachIndexed { planeIndex, plane ->
-            val outputStride: Int
-            var outputOffset: Int
-            when (planeIndex) {
-                0 -> {
-                    outputStride = 1
-                    outputOffset = 0
-                }
-                1 -> {
-                    outputStride = 2
-                    outputOffset = pixelCount + 1
-                }
-
-                2 -> {
-                    outputStride = 2
-                    outputOffset = pixelCount
-                }
-                else -> {
-                    return@forEachIndexed
-                }
+            val outputStride = when (planeIndex) {
+                0 -> 1
+                1 -> 2
+                2 -> 2
+                else -> return@forEachIndexed
+            }
+            var outputOffset = when (planeIndex) {
+                0 -> 0
+                1 -> pixelCount + 1
+                2 -> pixelCount
+                else -> return@forEachIndexed
             }
 
             val planeBuffer = plane.buffer
@@ -110,9 +101,7 @@ class YuvToRgbConverter(context: Context) {
                         outputOffset += outputStride
                     }
                 }
-
             }
-
         }
     }
 }

@@ -9,6 +9,8 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        maven("https://google.bintray.com/tensorflow")
+
     }
 }
 dependencyResolutionManagement {
